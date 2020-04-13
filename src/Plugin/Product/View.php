@@ -121,7 +121,9 @@ class View
                 ->addAttributeToSelect('url_key')
                 ->addAttributeToSelect('include_in_menu')
                 ->addAttributeToSelect('is_active')
-                ->addAttributeToSelect('is_anchor');
+                ->addAttributeToSelect('is_anchor')
+                ->addAttributeToSort('level', 'ASC')
+            ;
         } catch (LocalizedException $e) {
             return $result;
         }
@@ -133,7 +135,7 @@ class View
                     'label' => $category->getName(),
                     'link' => $category->getUrl() ? $category->getUrl() : ''
                 ];
-                $breadcrumbsBlock->addCrumb('category' . $categoryId, $path);
+                $breadcrumbsBlock->addCrumb($category->getUrlKey(), $path);
             }
         }
 
